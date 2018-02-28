@@ -4,18 +4,34 @@
     <meta charset="UTF-8">
     <title>VueJS Tutorial</title>
     <style>
-        .color-red { color: red; }
-        .color-blue { color: blue; }
-        .is-loading { background-color: green; }
+
     </style>
 </head>
 <body>
     <div id="root">
-        <h1 :class="className">Hello world!</h1>
-        <button v-bind:title="title">Hover over me</button><br>
+        <h1>
+            {{ reversedMessage }}
+        </h1>
 
-        <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Toggle me</button><br>
-        <button :disabled="disabling" @click="disableButton">Click to disable</button>
+        <h1>All Tasks</h1>
+        <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+        <br>
+
+        <h1>Incompleted Tasks</h1>
+        <ul>
+            <li v-for="task in incompleteTasks">
+                {{ task.description }} |
+                <input type="checkbox" @click="markAsComplete(task)">Mark as complete
+            </li>
+        </ul>
+        <br>
+
+        <h1>Completed Tasks</h1>
+        <ul>
+            <li v-for="task in completedTasks" v-text="task.description"></li>
+        </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script>
@@ -23,20 +39,37 @@
             el: '#root',
 
             data: {
-                className: 'color-red',
-                title: 'The quick brown fox',
-                isLoading: false,
-                disabling: false
+                message: 'Hello World!',
+                tasks: [
+                    { description: 'Go to the store', completed: true },
+                    { description: 'Finish screencast', completed: false },
+                    { description: 'Make donation', completed: false },
+                    { description: 'Clear inbox', completed: false },
+                    { description: 'Make dinner', completed: false },
+                    { description: 'Clean room', completed: true },
+                ]
             },
 
-            methods: {
-                toggleClass() {
-                    this.isLoading = true;
-                    this.isLoading ? false : true;
+            computed: {
+                reversedMessage() {
+                    return this.message.split('').reverse().join('');
                 },
-
-                disableButton() {
-                    this.disabling = true;
+                incompleteTasks() {
+                    return this.tasks.filter(task => !task.completed); // Shorthand
+                    // return this.tasks.filter(function (task) {
+                    //     return !task.completed;
+                    // });
+                },
+                completedTasks() {
+                    return this.tasks.filter(task => task.completed); // Shorthand
+                    // return this.tasks.filter(function (task) {
+                    //     return !task.completed;
+                    // });
+                },
+            },
+            methods: {
+                markAsComplete(task) {
+                    return task.completed = true;
                 }
             }
         })

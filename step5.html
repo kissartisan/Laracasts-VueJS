@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS Tutorial</title>
+    <style>
+        .color-red { color: red; }
+        .color-blue { color: blue; }
+        .is-loading { background-color: green; }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h1 :class="className">Hello world!</h1>
+        <button v-bind:title="title">Hover over me</button><br>
+
+        <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Toggle me</button><br>
+        <button :disabled="disabling" @click="disableButton">Click to disable</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#root',
+
+            data: {
+                className: 'color-red',
+                title: 'The quick brown fox',
+                isLoading: false,
+                disabling: false
+            },
+
+            methods: {
+                toggleClass() {
+                    this.isLoading = true;
+                    this.isLoading ? false : true;
+                },
+
+                disableButton() {
+                    this.disabling = true;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
