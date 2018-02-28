@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS Tutorial</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h1>
+            {{ reversedMessage }}
+        </h1>
+
+        <h1>All Tasks</h1>
+        <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+        <br>
+
+        <h1>Incompleted Tasks</h1>
+        <ul>
+            <li v-for="task in incompleteTasks">
+                {{ task.description }} |
+                <input type="checkbox" @click="markAsComplete(task)">Mark as complete
+            </li>
+        </ul>
+        <br>
+
+        <h1>Completed Tasks</h1>
+        <ul>
+            <li v-for="task in completedTasks" v-text="task.description"></li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#root',
+
+            data: {
+                message: 'Hello World!',
+                tasks: [
+                    { description: 'Go to the store', completed: true },
+                    { description: 'Finish screencast', completed: false },
+                    { description: 'Make donation', completed: false },
+                    { description: 'Clear inbox', completed: false },
+                    { description: 'Make dinner', completed: false },
+                    { description: 'Clean room', completed: true },
+                ]
+            },
+
+            computed: {
+                reversedMessage() {
+                    return this.message.split('').reverse().join('');
+                },
+                incompleteTasks() {
+                    return this.tasks.filter(task => !task.completed); // Shorthand
+                    // return this.tasks.filter(function (task) {
+                    //     return !task.completed;
+                    // });
+                },
+                completedTasks() {
+                    return this.tasks.filter(task => task.completed); // Shorthand
+                    // return this.tasks.filter(function (task) {
+                    //     return !task.completed;
+                    // });
+                },
+            },
+            methods: {
+                markAsComplete(task) {
+                    return task.completed = true;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
