@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>VueJS Tutorial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <style>
-
+        body { padding-top: 40px }
     </style>
 </head>
 <body>
-    <div id="root">
-        <task-list></task-list>
+    <div id="root" class="container">
+        <message title="Hello World!" body="Lorem ipsum dolor sit amet."></message>
+        <message title="Hello Universe!" body="The quick brown fox jumps over the lazy dog."></message>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script src="main.js"></script>
