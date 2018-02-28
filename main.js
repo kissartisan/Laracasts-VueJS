@@ -1,31 +1,21 @@
-Vue.component('message', {
-    props: ['title', 'body'],
-
-    data() {
-        return {
-            isVisible: true
-        }
-    },
-
+Vue.component('modal', {
     template: `
-        <article class="message" v-show="isVisible">
-          <div class="message-header">
-            <p>{{ title }}</p>
-            <button class="delete" aria-label="delete" @click="hideMessage"></button>
+        <div class="modal is-active">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+                <slot></slot>
+            </div>
           </div>
-          <div class="message-body">
-            {{ body }}
-          </div>
-        </article>
-    `,
-
-    methods: {
-        hideMessage() {
-            this.isVisible = false;
-        }
-    }
+          <button class="modal-close is-large" aria-label="close" @click="$emit('close')"></button>
+        </div>
+    `
 });
 
 new Vue({
-    el: '#root'
+    el: '#root',
+
+    data: {
+        showModal: false
+    }
 });

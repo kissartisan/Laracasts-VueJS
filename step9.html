@@ -10,11 +10,8 @@
 </head>
 <body>
     <div id="root" class="container">
-        <modal v-if="showModal" @close="showModal = false">
-            <p>The quick brown fox jumps over the lazy dog.</p>
-        </modal>
-
-        <button @click="showModal = true">Show modal</button>
+        <message title="Hello World!" body="Lorem ipsum dolor sit amet."></message>
+        <message title="Hello Universe!" body="The quick brown fox jumps over the lazy dog."></message>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script src="main.js"></script>
