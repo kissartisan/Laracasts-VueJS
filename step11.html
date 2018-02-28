@@ -10,9 +10,17 @@
 </head>
 <body>
     <div id="root" class="container">
-        <coupon @applied="onCouponAppliedInParent"></coupon>
-
-        <h1 v-if="couponApplied">Coupon applied successfully!</h1>
+        <tabs>
+            <tab name="About Us" :selected="true">
+                <h1>About us tab. Nice one!</h1>
+            </tab>
+            <tab name="About Our Culture">
+                <h1>About our culture tab. Good game!</h1>
+            </tab>
+            <tab name="About Our Vision">
+                <h1>About our vision tab. Well played!</h1>
+            </tab>
+        </tabs>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script src="main.js"></script>
