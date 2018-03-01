@@ -10,16 +10,9 @@
 </head>
 <body>
     <div id="root" class="container">
-        <modal>
-            <template slot="header">Hello world!</template>
+        <coupon @applied="onCouponAppliedInParent"></coupon>
 
-            Here is my main content. Lol.
-
-            <template slot="footer">
-                <button class="button is-success">Save changes</button>
-                <button class="button">Cancel</button>
-            </template>
-        </modal>
+        <h1 v-if="couponApplied">Coupon applied successfully!</h1>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script src="main.js"></script>
